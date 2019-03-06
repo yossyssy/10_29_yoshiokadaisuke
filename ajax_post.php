@@ -17,12 +17,13 @@ $comment = $_POST['comment'];
 //DB接続
 $pdo = db_conn();
 
-$sql ='INSERT INTO php02_table(id, task, deadline, comment, indate) VALUES(NULL, :a1, :a2, :a3, sysdate())';
+$sql ='INSERT INTO php02_table(id, task, deadline, comment, image, indate) VALUES(NULL, :a1, :a2, :a3, :image, sysdate())';
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':a1', $task, PDO::PARAM_STR);    //Integer（数値の場合 PDO::PARAM_INT)
 $stmt->bindValue(':a2', $deadline, PDO::PARAM_STR);   //Integer（数値の場合 PDO::PARAM_INT)
 $stmt->bindValue(':a3', $comment, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':image', $file_name, PDO::PARAM_STR);
 $status = $stmt->execute();
 
 $sql = 'SELECT * FROM php02_table ORDER BY deadline DESC';

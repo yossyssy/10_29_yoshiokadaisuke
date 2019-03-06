@@ -44,7 +44,6 @@ if (move_uploaded_file($tmp_path, $file_name)) {
 }
 
 
-
 // DB接続
 $pdo = db_conn();
 

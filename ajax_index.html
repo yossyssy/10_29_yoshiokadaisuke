@@ -68,7 +68,8 @@
         function listData(data) {
             // 書ける人は書いてみよう
             // var str = '';
-            // for(var i=o; i<data.length; i++) 
+            // for (var i = o; i < data.length; i++);
+
         }
 
         // DBからデータを取得する関数
@@ -94,8 +95,13 @@
             const value = {
                 task: $('#task').val(),
                 deadline: $('#deadline').val(),
-                comment: $('#comment').val()
+                comment: $('#comment').val(),
+                img: $('#image').val()
             };
+
+            // var_dump($_POST);
+            // exit();
+
             // データ送信
             $.ajax({
                 dataType: 'json',
@@ -115,6 +121,7 @@
         }
 
         // 読み込み時にDBからデータ取得
+        fetch('image') -> data
 
         // 送信でDBにデータ送信
         $('#send').on('click', function () {
@@ -122,6 +129,7 @@
             $('#task').val('');
             $('#deadline').val('');
             $('#comment').val('');
+            $('#image').val('');
         });
 
     </script>
