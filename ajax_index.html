@@ -66,10 +66,23 @@
     <script>
         // DBから取得したデータを表示する関数
         function listData(data) {
-            // 書ける人は書いてみよう
-            // var str = '';
-            // for (var i = o; i < data.length; i++);
 
+            // 書ける人は書いてみよう
+            var str = '';
+            for (var i = 0; i < data.length; i++) {
+
+                //str.push('<p>' + data[i].task + '</p>');
+                //str += '<li>${ data[i].id }</li>';
+                str += "<li>$[data[i].task]</li>"
+                str += "<li>$[data[i].deadline]</li>"
+                str += "<li>$[data[i].image]</li>"
+                //str.push('<p>' + data.comment[i] + '</p>');
+                //str.push('<p>' + data.deadline[i] + '</p>');
+                //data.push('<p>' + img[i] + '</p>');
+                //arr.push('<p>' + img.rest[i].name + '</p>');
+            }
+            //return str;
+            $('#echo').html(str);
         }
 
         // DBからデータを取得する関数
@@ -78,7 +91,7 @@
             $.getJSON(url)
                 .done(function (data, textStatus, jqXHR) {
                     console.log(data);
-                    //$
+                    listData(data);
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
                     console.log('error');
@@ -111,6 +124,8 @@
             })
                 .done(function (data) {
                     console.log(data);
+                    //var tag = listdata(data);
+                    $('#echo').html(tag);
                 })
                 .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                     console.log('error');
@@ -121,9 +136,17 @@
         }
 
         // 読み込み時にDBからデータ取得
-        fetch('image') -> data
+        //ループさせて、データを取得する。
+        //$data = $sth -> fetchAll(PDO:: FETCH_ASSOC);
+        //echo json_encode($data); //jsonオブジェクト化。必須。
+        //exit;
 
-        // 送信でDBにデータ送信
+        // 更新ボタン押したらgetJSONする
+        $('#showNew').on('click', function () {
+            selectData();
+        });
+
+        // 送信ボタン押したらajaxする関数を実行
         $('#send').on('click', function () {
             insertData();
             $('#task').val('');
